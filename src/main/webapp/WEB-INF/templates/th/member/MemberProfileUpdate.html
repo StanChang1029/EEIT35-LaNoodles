@@ -1,0 +1,125 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>LaNoodles</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/templ/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+	<link href="/css/templ/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/templ/main.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/bootstrap5/bootstrap.min.css">
+    <script src="/js/sweetalert2/sweetalert2@11.js"></script>
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <div th:replace="th/templatepage :: sidebar"></div>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+            <div th:replace="th/templatepage :: navbar"></div>
+            <!--大家的內容-->
+	        <div class="d-flex flex-column container" style="padding: 0">
+			    <div class="container col-md-6 mx-auto">
+			        <h1 class="text-center" style="color:#800000;">個人資訊</h1><br>
+			        <form method="post" id="memberprofile"  style="background:#F5F5F5;border-width:4.5px;border-style:outset;border-color:#880000;padding:55px;border-radius:3em" >
+			            <!-- <input type="hidden" name="_method" value="put"> -->
+			            <table class="table table-striped">
+			                <tr>
+			                    <td class="">姓名:</td>
+			                    <td>			                   
+			                <input type="hidden" name="memberProfileId" th:field="${memberProfile.memberProfileId}" />
+			                <input type="hidden" name="memberAccount" th:field="${memberProfile.memberAccount}" />
+			                        <input type="text" name="memberName" th:field="${memberProfile.memberName}" />
+			                    </td>
+			                </tr>
+			                <tr>
+			                    <td class="">電子信箱:</td>
+			                    <td>
+			                        <input type="text" name="memberEmail" th:field="${memberProfile.memberEmail}" />
+			                    </td>
+			                </tr>
+			                <tr>
+			                    <td class="">電話:</td>
+			                    <td>
+			                        <input type="text" name="memberPhone" th:field="${memberProfile.memberPhone}" />
+			                    </td>
+			                </tr>
+			                <tr>
+			                    <td class="">生日:</td>
+			                    <td>
+			                        <input type="date" name="memberBirthday" th:field="${memberProfile.memberBirthday}" />
+			                    </td>
+			                </tr>
+			            </table>
+			            <br>
+			            <div class="d-grid gap-2 mx-auto">
+			                <button class="btn btn-primary" type="submit" id="submit">修改完成</button>
+			                <br>
+			                <button class="btn btn-warning" type="button" onclick="location.href='/userprofile/profile'">取消</button>
+			            </div>
+			        </form>
+			    </div>
+		    </div>
+		      <br> <br> <br> <br> <br> <br>      
+            <!-- FOOTER -->
+            <div th:replace="th/templatepage :: footer"></div>
+
+        </div>
+    </div>
+    <script src="/js/jquery/jquery-3.6.0.min.js"></script>
+    <script src="/js/templ/popper.js"></script>
+    <script src="/js/templ/bootstrap.min.js"></script>
+    <script src="/js/templ/main.js"></script>
+        <script>
+        function convertFormToJSON(form) {
+            const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
+            const json = {};
+            $.each(array, function() {
+                json[this.name] = this.value || "";
+            });
+            return json;
+        }
+
+        $("#memberprofile").on("submit", function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '是否要修改',
+                showCancelButton: true,
+                confirmButtonText: '確認', //搭配isConfirmed
+                cancelButtonText: '取消',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const form = $(e.target);
+                    console.log(form);
+                    const json = convertFormToJSON(form);
+                    $.ajax({
+                        type: 'put',
+                        url: '/memberprofile',
+                        contentType: "application/json",
+                        data: JSON.stringify(json),
+                        success: function(data) {
+                                window.location.href = "/userprofile/profileupdate/success";
+                            }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

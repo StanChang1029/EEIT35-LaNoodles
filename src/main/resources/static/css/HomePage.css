@@ -1,0 +1,27 @@
+.note {
+    font-size: 15px;
+    text-align:left;
+    color:grey;
+}
+.f1 {
+    width: 600px;
+    border-radius: 10px;
+    border: 3px solid red;
+}
+
+.l1 {
+    font-size: 15px;
+}
+
+.st {
+    width: 500px;
+    margin: 20px;
+    border-bottom: 2px dashed grey;
+    margin: 20px;
+}
+.ramenpics {
+    max-height: 300px;  width: auto;
+}
+.picsnumber {
+    max-height: 50px;  width: auto;
+}

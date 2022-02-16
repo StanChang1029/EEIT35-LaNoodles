@@ -1,0 +1,155 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>LaNoodles</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/templ/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/templ/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/templ/main.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/bootstrap5/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/step_process_bar.css">
+
+    <link rel="stylesheet" href="/css/bootstrap5/bootstrap-icons.css">
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <div th:replace="th/templatepage :: sidebar"></div>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+            <div th:replace="th/templatepage :: navbar"></div>
+            <!--大家的內容-->
+            <div class="d-flex flex-column container">
+                <div class="container col-md-6 mx-auto">
+                    <h1 class="text-center" style="color:#800000;">加入會員</h1><br> <br>
+                    <div class="step-progress-bar-container p-2">
+                        <ul class="step-progress-bar">
+                            <li id="1">填寫會員帳號</li>
+                            <li id="2">填寫會員資訊</li>
+                            <li id="3">完成</li>
+                        </ul>
+                    </div>
+                    <br> <br> <br>
+                    <form style="background:#F5F5F5;border-width:4.5px;border-style:outset;border-color:#880000;padding:25px;border-radius:3em" id="memberAccountForm">
+                        <h3>會員帳號設定</h3>
+                        <hr>
+                        <div class="mb-3">
+                            <label for="account" class="form-label">會員帳號:</label> &ensp;&ensp;&ensp;
+                            <label for="account" class="form-label" id="noticeAccount" style="color: red;"></label>
+                            <input type="text" class="form-control" name="memberAccount" id="memberAccount">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">會員密碼:</label><i class="bi bi-eye-slash" id="eyePassword"></i>
+                            <!-- <p id="noticePassword"></p> -->
+                            <input type="password" class="form-control" name="memberPassword" id="memberPassword">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">會員密碼確認:</label><i class="bi bi-eye-slash" id="eyeCheckPassword"></i>&ensp;&ensp;&ensp;
+                            <label for="password" class="form-label" id="noticeCheckPassword" style="color: red;"></label>
+                            <input type="password" class="form-control" id="checkPassword">
+                        </div>
+                        <hr>
+                        <div class="row justify-content-center">
+                            <button class="btn btn-primary col-4 m-2" type="submit">下一步</button>
+                            <button class="btn btn-secondary col-4 m-2" type="button" onclick="location.href='/login/page'">取消</button>
+                        </div>
+                        <hr>
+                        <button class="btn btn-primary" type="button" id="keyInPassword">一鍵輸入</button>
+                    </form>
+                </div>
+            </div>
+            <br> <br> <br> <br> <br> <br>
+            <!-- FOOTER -->
+            <div th:replace="th/templatepage :: footer"></div>
+
+        </div>
+    </div>
+    <script src="/js/jquery/jquery-3.6.0.min.js"></script>
+    <script src="/js/templ/popper.js"></script>
+    <script src="/js/templ/bootstrap.min.js"></script>
+    <script src="/js/templ/main.js"></script>
+    <script src="/js/sweetalert2/sweetalert2@11.js"></script>
+    <script>
+        step = 1;
+        $('.step-progress-bar').children('li').slice(0, step).addClass("step-active");
+
+        account_check = true;
+        password_check = true;
+        null_check = true;
+
+        function convertFormToJSON(form) {
+            const array = $(form).serializeArray();
+            const json = {};
+            $.each(array, function() {
+                json[this.name] = this.value || "";
+            });
+            return json;
+        }
+
+        $("#memberAccountForm").on("submit", function(e) {
+            e.preventDefault();
+            const form = $(e.target);
+            const json = convertFormToJSON(form);
+            console.log(json);
+            $.each(json, function(index, value) {
+                console.log(index + " " + value);
+                if (value == null) {
+                    null_check = true;
+                    return false;
+                } else {
+                    null_check = false;
+                }
+            });
+
+            if (account_check) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '請確認帳號是否輸入或重複',
+                });
+            } else if (password_check) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '請確認密碼是否輸入或確認錯誤',
+                });
+            } else if (null_check) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '請確認是否有未填寫資料',
+                });
+            } else {
+                $.ajax({
+                    type: 'post',
+                    url: '/adduser/account/add',
+                    contentType: "application/json",
+                    data: JSON.stringify(json),
+                    success: function(data) {
+                        console.log(data);
+                        window.location.href = "/adduser/profile";
+                    }
+                });
+            }
+        });
+    </script>
+    <!-- page only -->
+    <script src="/js/member/addMember.js"></script>
+    <script src="/js/member/showAddMemberPassword.js"></script>
+</body>
+
+</html>

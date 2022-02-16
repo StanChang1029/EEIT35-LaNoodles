@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>會員資訊系統</title>
+    <link rel="stylesheet" href="/css/datatable/jquery.dataTables.min.css">
+    <script src="/js/jquery/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap5/bootstrap.min.css">
+    <script src="/js/sweetalert2/sweetalert2@11.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/templ/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/templ/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/templ/main.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+    <script src="/js/chart/chart.js"></script>
+    <script src="/js/chart/chartjs-plugin-datalabels@2.0.0"></script><!--  -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <div th:replace="th/templatepage_back :: sidebar"></div>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+            <div th:replace="th/templatepage :: navbar"></div>
+            <!--大家的內容-->
+            <br>
+            <h2 class="text-center" style="color:#800000;">會員資訊系統</h2>
+            <br>
+            <div style="font-size:1.2rem;width:1200px;margin:auto;background:#F5F5F5;border-width:4.5px;border-style:outset;border-color:#880000;padding:40px;border-radius:3em">
+                <button style="border-width:0.01px;border-radius:0.3em;color:white;background-color:#0066FF" type="button" id="addAdmin">新增管理員</button>
+                <br>
+                <canvas id="myChart" style="margin: 0 auto;height:200px; width:300px"></canvas>
+                <br>
+                <table id="demo"></table>
+            </div>
+            <br><br><br><br><br><br>
+            <!-- FOOTER -->
+            <div th:replace="th/templatepage :: footer "></div>
+
+        </div>
+    </div>
+    <!--     <script src="/js/jquery/jquery-3.6.0.min.js "></script> -->
+    <script src="/js/templ/popper.js "></script>
+    <script src="/js/templ/bootstrap.min.js "></script>
+    <script src="/js/templ/main.js "></script>
+
+    <script src="/js/datatable/jquery.dataTables.min.js "></script>
+    <!-- page only -->
+    <script src="/js/member/MembeAdmin.js "></script>
+</body>
+
+</html>

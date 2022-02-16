@@ -1,0 +1,20 @@
+@charset "BIG5";
+
+.table-title{
+	padding: 5px 15px;
+	border-radius: 3px;
+	background-color: rgba(0,0,0,0.15);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+}
+
+.table-title > i{
+	transform: rotate(0);
+	transition: transform 0.15s ease-in-out;
+}
+
+.table-title.active > i{
+	transform: rotate(180deg);
+}

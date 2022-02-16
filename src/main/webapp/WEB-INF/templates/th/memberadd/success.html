@@ -1,0 +1,78 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>LaNoodles</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/templ/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+	<link href="/css/templ/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/templ/main.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="/css/bootstrap5/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/step_process_bar.css">
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <div th:replace="th/templatepage :: sidebar"></div>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+            <div th:replace="th/templatepage :: navbar"></div>
+            <!--大家的內容-->
+          	<div class="d-flex flex-column container" style="padding: 0">
+				<div class="container col-md-6 mx-auto">
+                    <h1 class="text-center" style="color:#800000;">加入會員</h1><br> <br>
+                    <div class="step-progress-bar-container p-2" >
+                        <ul class="step-progress-bar">
+                            <li id="1">填寫會員帳號</li>
+                            <li id="2">填寫會員資訊</li>
+                            <li id="3">完成</li>
+                        </ul>
+                    </div>
+                    <br> <br> <br>
+	<div class="text-center" style="width:600px;margin:auto;background:#F5F5F5;border-width:4.5px;border-style:outset;border-color:#880000;padding:35px;border-radius:3em">
+		
+					<div >
+						<h4 class="text-center">加入完成</h4>
+						<div class="row justify-content-center">
+							<button class="btn btn-primary col-4" type="button"
+								onclick="location.href='/login/page'">回登入畫面</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br><br><br><br><br>	
+            <!-- FOOTER -->
+            <div th:replace="th/templatepage :: footer"></div>
+
+        </div>
+    </div>
+    <script src="/js/jquery/jquery-3.6.0.min.js"></script>
+    <script src="/js/templ/popper.js"></script>
+    <script src="/js/templ/bootstrap.min.js"></script>
+    <script src="/js/templ/main.js"></script>
+    	<script>
+		step = 3;
+		$('.step-progress-bar').children('li').slice(0, step).addClass(
+				"step-active");
+		// .html('<i class="bi bi-check-lg"></i>');
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8" />
+    <title>Welcome</title>
+    <link href="/css/bootstrap5/header.css" rel="stylesheet">
+    <style>
+        .navbar.fixed_nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav th:fragment="header" id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed_nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:text="${memberProfile != null} ? '歡迎，'+${memberProfile.memberName} : '歡迎，訪客'"></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto gap-2 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <button class="btn btn-secondary" type="button" onclick="location.href='/sidebar-01/Homepages.jsp#'">回首頁</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-primary" type="button" onclick="location.href='/login/page'">登入</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-warning" type="button" onclick="location.href='/logout'">登出</button>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/userprofile/profile">個人資訊</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/menu/Menu.controller">菜單</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/shop/shop.controller">購物車</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/food.controller">預約</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/comment/HomePage">評論</a></li>
+                    <li th:if="${session.memberType} eq 0" class="nav-item"><a class="nav-link active" aria-current="page" href="/admin/member">後台</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="main"></div>
+    <script>
+        //bootstrap.min
+        window.onload = function() {
+            var main = document.querySelector('.main');
+            var h = document.querySelector('.navbar.fixed_nav');
+            document.querySelector('div.main').style.height = h.offsetHeight +
+                "px";
+        }
+    </script>
+</body>
+
+</html>

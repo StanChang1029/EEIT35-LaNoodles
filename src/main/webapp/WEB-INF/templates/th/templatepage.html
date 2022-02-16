@@ -1,0 +1,305 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>LaNoodles</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/templ/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+	<link href="/css/templ/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/templ/main.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav th:fragment="sidebar" id="sidebar">
+		      <div class="p-4 pt-5">             
+		        <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(/images/logo1.jpg);"></a>
+		        <ul class="list-unstyled components mb-5">
+				  <li>
+		            <a aria-expanded="false" style="font-size:20px" th:text="${memberProfile != null} ? '歡迎，'+${memberProfile.memberName} : '歡迎，訪客'">歡迎，訪客</a>
+		          </li>
+		       <li>
+		<!--        <li class="active"> -->
+		            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-size:20px">菜單</a>
+		            <ul class="collapse list-unstyled" id="homeSubmenu">
+		              <li>
+		                <a href="/menu/Menuuser.controller" style="font-size:18px">檢視菜單</a>
+		              </li>
+		              <li>
+		                <a href="/menu/Menuquery.controller" style="font-size:18px">查詢菜單</a>
+		              </li>
+		            </ul>
+		          </li>
+		        <li>
+		            <a href="#informSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-size:20px">個人資訊</a>
+		            <ul class="collapse list-unstyled" id="informSubmenu">
+		               <li>
+		            	<a href="/userprofile/profile" style="font-size:18px">個人資訊</a>
+		         	 </li>
+		            </ul>
+		          </li>  
+		         <li>
+		            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-size:20px">購物車</a>
+		            <ul class="collapse list-unstyled" id="pageSubmenu">
+			           <li>
+		            	<a href="/shop/shop.controller"style="font-size:18px">外帶菜單</a>
+		         	  </li>
+			         <li>
+		            	<a href="/cart/cart.controller"style="font-size:18px">購物車</a>
+		         	 </li>
+		              <li>
+		                <a href="/order/ordercustomerorder.controller"style="font-size:18px">訂單紀錄</a>
+		              </li>
+		            </ul>
+		          </li>  
+		          <li>
+		            <a href="#bookingSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"style="font-size:20px">預約</a>
+		            <ul class="collapse list-unstyled" id="bookingSubmenu">
+		              <li>
+		            	<a href="/food/foodmember.controller"style="font-size:18px">預約</a>
+		         	 </li>
+<!-- 		              <li> -->
+<!-- 		                <a href="/Inquire" style="font-size:18px">預約查詢</a> -->
+<!-- 		              </li> -->
+		            </ul>
+		          </li> 
+		           <li>
+		            <a href="#judgeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"style="font-size:20px">評論</a>
+		            <ul class="collapse list-unstyled" id="judgeSubmenu">
+		               <li>
+		            	<a href="/comment/CommentView"style="font-size:18px">評論</a>
+		         	 </li>
+		            </ul>
+		          </li>
+		          
+		          
+		          <!-- Page Content  -->
+		          <li>
+		            <a th:if="${session.memberType} eq 0" class="dropdown-toggle" style="font-size:20px" href="/admin/backstage">後台</a>
+		          </li>
+		          
+		        </ul>
+		       <div>
+		       <br>
+		       <br>
+		       <br>
+		       <br>
+		       </div>
+		        <div class="footer">
+		          <p id=footer1 >
+		            <script >document.write(new Date().getFullYear());</script> 麵屋豚介 <br> 🎏營業時間🎏<br> 中午11:00-14:00<br>
+		            晚上17:00-20:00提前售完。 <br> 🐖聯絡電話🐖<br> 0973-510-320<br>
+		            <i class="icon-heart" aria-hidden="true"></i> by <a href="https://www.facebook.com/web1031/"
+		              target="_blank">PAMAN</a>
+		
+		          </p>
+		        </div>
+		
+		      </div>
+		    </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+		        <div class="container-fluid" style="background-color: 	#880000">
+		         <div class="container-fluid" style="background-color: 	#5B5B5B">
+		          <div class="container-fluid" style="background-color: 	#880000">					
+		
+		          <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+		          <br>         
+		          <button type="button" id="sidebarCollapse" class="btn btn-secondary"  >
+		            <i class="fa fa-bars" ></i>
+		            <span class="sr-only">Toggle Menu</span>
+		          </button>
+		          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+		            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+		            aria-label="Toggle navigation">
+		            <i class="fa fa-bars"></i>
+		          </button>
+		            <ul class="nav navbar-nav ml-auto">           
+		              <li class="nav-item active">
+		                <a class="nav-link" href="/home"  style="font-size:20px; color:white">首頁</a>
+		              </li>
+		              <li class="nav-item">
+		                <a class="nav-link" href="https://www.facebook.com/web1031/"style="font-size:20px; color:white">關於</a>
+		              </li>
+		              <li class="nav-item">
+		                <a class="nav-link" href="/menu/menumain.controller" style=" font-size:20px;color:white">菜單</a>
+		              </li>
+		              <li class="nav-item">
+		                <a class="nav-link" href="/cart/cart.controller" style=" font-size:20px;color:white">購物車</a>
+		              </li>
+		              <li class="nav-item">
+		                <a class="nav-link" href="/login/page" style="font-size:20px; color:white" th:text="${memberProfile != null} ? '會員登出' : '會員登入'">會員登入</a>
+		              </li>        
+		            </ul>
+		            <br>
+		             <br>             
+		               <br>
+		             </div>          
+		          	</div>     
+		          </div>      
+		        </div>
+		      </nav>
+
+            <!--大家的內容-->
+
+
+            <!-- FOOTER -->
+			  <footer th:fragment="footer" 
+			          class="text-center text-lg-start text-white"
+			          style="background-color: #600000	"
+			          >
+			    <!-- Grid container -->
+			    <div class="container p-4 pb-0">
+			      <!-- Section: Links -->
+			      <section class="">
+			        <!--Grid row-->
+			        <div class="row">
+			          <!-- Grid column -->
+			          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+			            <h5 class="text-uppercase mb-4 font-weight-bold">
+			              麵屋豚介
+			            </h5>
+			            <p>
+			              正宗九州博多豚骨拉麵的魅力，以豬大骨豬頭骨，大火熬煮16小時，費時費工，提供出濃厚香醇的美味湯頭。
+			            </p>
+			          </div>
+			          <!-- Grid column -->
+			
+			          <hr class="w-100 clearfix d-md-none" />
+			
+			          <!-- Grid column -->
+			          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+			            <h5 class="text-uppercase mb-4 font-weight-bold">店家特色</h5>
+			             <p>
+			              <a class="text-white">在地食材，當季新品海鮮。</a>
+			            </p>
+			             <p>
+			              <a class="text-white">選用產銷履歷肉品。</a>
+			              </p>
+			               <p>
+			              <a class="text-white">支持台灣豬農，雲林快樂豬。</a>
+			            </p>
+			            <p>
+			              <a class="text-white">不定時研發新菜品。</a>
+			            </p>
+			            <p>
+			              <a class="text-white">鄰近內壢火車站</a>
+			              <a class="text-white">(附停車場)</a>
+			            </p>
+			           
+			          </div>
+			          <!-- Grid column -->
+			
+			          <hr class="w-100 clearfix d-md-none" />
+			
+			          <!-- Grid column -->
+			          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+			            <h5 class="text-uppercase mb-4 font-weight-bold">
+			              服務連結
+			            </h5>
+			            <p>
+			              <a class="text-white">帳戶管理</a>
+			            </p>           
+			            <p>
+			              <a class="text-white">客服諮詢</a>
+			            </p>
+			          </div>
+			
+			          <!-- Grid column -->
+			          <hr class="w-100 clearfix d-md-none" />
+			
+			          <!-- Grid column -->
+			          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+			            <h5 class="text-uppercase mb-4 font-weight-bold">聯絡我們</h5>
+			            <p><i class="fas fa-home mr-3"></i> 320 桃園市 中壢區 興農路 46 號</p>
+			            <p><i class="fas fa-envelope mr-3"></i> 豚介粉專</p>
+			            <p><i class="fas fa-phone mr-3"></i> + 886 973 510 320</p>
+			           
+			          </div>
+			          <!-- Grid column -->
+			        </div>
+			        <!--Grid row-->
+			      </section>
+			      <!-- Section: Links -->
+			
+			      <hr class="my-3">
+			
+			      <!-- Section: Copyright -->
+			      <section class="p-3 pt-0">
+			        <div class="row d-flex align-items-center">
+			          <!-- Grid column -->
+			          <div class="col-md-7 col-lg-8 text-center text-md-start">
+			            <!-- Copyright -->
+			            <div class="p-3">
+			              © 2022 Copyright:
+			              <a class="text-white" href="https://www.facebook.com/web1031/"
+			                 >豚介粉專</a
+			                >
+			            </div>
+			            <!-- Copyright -->
+			          </div>
+			          <!-- Grid column -->
+			
+			          <!-- Grid column -->
+			          <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+			            <!-- Facebook -->
+			            <a
+			               class="btn btn-outline-light btn-floating m-1 text-white"
+			               role="button"
+			               ><i class="fab fa-facebook-f"></i
+			              ></a>
+			
+			            <!-- Twitter -->
+			            <a
+			               class="btn btn-outline-light btn-floating m-1 text-white"
+			               role="button"
+			               ><i class="fab fa-twitter"></i
+			              ></a>
+			
+			            <!-- Google -->
+			            <a
+			               class="btn btn-outline-light btn-floating m-1 text-white"
+			               role="button"
+			               ><i class="fab fa-google"></i
+			              ></a>
+			
+			            <!-- Instagram -->
+			            <a
+			               class="btn btn-outline-light btn-floating m-1 text-white"
+			               role="button"
+			               ><i class="fab fa-instagram"></i
+			              ></a>
+			          </div>
+			          <!-- Grid column -->
+			        </div>
+			      </section>
+			      <!-- Section: Copyright -->
+			    </div>
+			    <!-- Grid container -->
+			  </footer>
+			  <!-- Footer -->
+        </div>
+    </div>
+    <script src="/js/jquery/jquery-3.6.0.min.js"></script>
+    <script src="/js/templ/popper.js"></script>
+    <script src="/js/templ/bootstrap.min.js"></script>
+    <script src="/js/templ/main.js"></script>
+</body>
+
+</html>

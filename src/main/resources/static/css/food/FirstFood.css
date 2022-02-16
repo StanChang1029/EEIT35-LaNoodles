@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+*:focus-visible{
+	outline: 0;
+}
+
+.test-form{
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 15px 0;
+	border-radius: 5px;
+}
+.test-form .form-container{
+	padding: 0 15px;
+}
+
+.test-form .form-container .form-group{
+	display: flex;
+	margin-bottom: 20px;
+	
+}
+
+.test-form .form-container .form-group > label{
+	width: 100px;
+	padding: 10px 0;
+}
+
+.test-form .form-container .form-group .input-container{
+	flex: 1;
+}
+
+.test-form .form-container .form-group .input-container .error-text{
+	font-size: 12px;
+	color: #dc3545;
+}
+
+.test-form .form-container .form-group .input-container .radio-group{
+	margin-top: 10px;
+}
+
+.test-form .form-container .form-group .input-container .input-group{
+	display: flex;
+	align-items: center;
+}
+
+.test-form .form-container .form-group .input-container .input-group > input{
+	padding: 0 10px;
+	width: 100%;
+	height: 40px;
+	font-size: 14px;
+	border-radius: 3px;
+	border: 1px solid #969696;
+	transition: border 0.15s ease-in-out;
+}
+
+.test-form .form-container .form-group .input-container .input-group > input:focus{
+	border: 1px solid #444;
+}
+
+.form-footer{
+	padding: 15px;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.form-footer .form-btn{
+	margin-left: 15px;
+	padding: 8px 16px;
+	border-radius: 3px;
+	background-color: #0d6efd;
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 16px;
+	transition: all 0.15s ease-in-out;
+	cursor: pointer;
+	border: 0px;
+}
+
+.form-footer .form-btn:disabled{
+	background-color: #cdcdcd;
+	color: #7a7a7a;
+	pointer-events: none;
+}
+
+
+

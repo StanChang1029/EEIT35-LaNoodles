@@ -1,0 +1,117 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html lang="zh-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>LaNoodles</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/templ/style.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/carousel/">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/templ/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/templ/main.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap5/bootstrap-icons.css">
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <div th:replace="th/templatepage :: sidebar"></div>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+            <div th:replace="th/templatepage :: navbar"></div>
+            <!--大家的內容-->
+
+
+
+            <div class="text-center">
+
+                <main class="form-signin">
+                    <br>
+                    <h2 class="text-center" style="color:#800000;">會員登入</h2> <br>
+                    <hr>
+                    <div class="d-flex flex-column container" style="padding: 0;">
+                        <div style="font-size:1.2rem;width:500px;margin:auto;background:#F5F5F5;border-width:4.5px;border-style:outset;border-color:#880000;padding:40px;border-radius:3em">
+                            <form style="background:#F5F5F5	" action="/login/page" method="post">
+
+                                <div class="form-floating">
+                                    <label for="account" class="form-label">帳號:</label>
+                                    <input type="text" class="form-control" name="username" id="account">
+                                    <span id="checkAccount"></span>
+                                </div>
+                                <div class="form-floating">
+                                    <label for="password" class="form-label">密碼:</label><i class="bi bi-eye-slash" id="eyePassword"></i>
+                                    <input type="password" class="form-control" name="password" id="memberPassword">
+                                    <span id="checkPassword"></span>
+                                </div>
+                                <hr>
+                                <input type="submit" name="login" id="login" class="w-100 btn btn-lg btn-primary" value="登入">
+                                <hr>
+                                <button style="border-width:0.01px;border-radius:0.3em;color:white;background-color:#0066FF" type="button" onclick="location.href='/adduser/account'">加入會員</button>
+                                <button style="border-width:0.01px;border-radius:0.3em;color:white;background-color:#0066FF" type="button" onclick="location.href='/forgetpassword'">忘記密碼</button>
+                                <hr>
+                                <button class="btn btn-primary" type="button" id="keyInAdmin" click="loginAdmin()">一鍵管理員</button>
+                                <button class="btn btn-primary" type="button" id="keyInMember1" click="loginMember1()">一鍵天陽</button>
+                                <button class="btn btn-primary" type="button" id="keyInMember2" click="loginMember2()">一鍵喻文</button>
+                                <br><br>
+                                <button class="btn btn-primary" type="button" id="keyInMember3" click="loginMember3()">一鍵佳倫</button>
+                                <button class="btn btn-primary" type="button" id="keyInMember4" click="loginMember4()">一鍵世麒</button>
+                                <button class="btn btn-primary" type="button" id="keyInMember5" click="loginMember5()">一鍵銘捷</button>
+                            </form>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <br><br><br><br><br><br>
+            <!-- FOOTER -->
+            <div th:replace="th/templatepage :: footer"></div>
+
+        </div>
+    </div>
+    <script src="/js/jquery/jquery-3.6.0.min.js"></script>
+    <script src="/js/templ/popper.js"></script>
+    <script src="/js/templ/bootstrap.min.js"></script>
+    <script src="/js/templ/main.js"></script>
+
+    <!-- page only -->
+    <script src="/js/member/login.js"></script>
+    <script src="/js/member/showLoginPassword.js"></script>
+</body>
+
+</html>
